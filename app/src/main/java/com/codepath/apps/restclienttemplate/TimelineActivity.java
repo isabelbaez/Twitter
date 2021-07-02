@@ -112,13 +112,6 @@ public class TimelineActivity extends AppCompatActivity {
             }
 
         });
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLogoutButton();
-                finish();
-            }
-        });
     }
 
     @Override
@@ -133,6 +126,13 @@ public class TimelineActivity extends AppCompatActivity {
             //Navigate to respective activity
             Intent intent = new Intent(this, ComposeActivity.class);
             startActivityForResult(intent, REQUEST_CODE);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.btnLogOut) {
+            //Navigate to respective activity
+            onLogoutButton();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
