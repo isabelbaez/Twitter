@@ -4,8 +4,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.io.Serializable;
+
 @Parcel
-public class User {
+public class User implements Serializable {
 
     public User() {}
 

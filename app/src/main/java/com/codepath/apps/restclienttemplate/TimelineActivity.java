@@ -39,7 +39,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetsAdapter adapter;
     Button btnLogOut;
 
-    private SwipeRefreshLayout swipeContainer;
+    SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,7 @@ public class TimelineActivity extends AppCompatActivity {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
+                //fetchTimelineAsync(0);
                 fetchTimelineAsync(0);
             }
         });
@@ -92,15 +93,15 @@ public class TimelineActivity extends AppCompatActivity {
                 adapter.clear();
                 // ...the data has come back, add new items to your adapter...
                 JSONArray jsonArray = json.jsonArray;
-
                 try {
+                    //adapter.addAll(Tweet.fromJsonArray(jsonArray));
                     tweets.addAll(Tweet.fromJsonArray(jsonArray));
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.e(TAG, "JSON Exception!", e);
                     e.printStackTrace();
                 }
 
-                adapter.notifyDataSetChanged();
                 // Now we call setRefreshing(false) to signal refresh has finished
                 swipeContainer.setRefreshing(false);
             }
@@ -141,7 +142,7 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             // Get tweet object
-            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
+            Tweet tweet = (Tweet) data.getSerializableExtra("tweet");//Parcels.unwrap(data.getParcelableExtra("tweet"));
             // Update recycler view
             // Modify data source to include tweet
             tweets.add(0, tweet);

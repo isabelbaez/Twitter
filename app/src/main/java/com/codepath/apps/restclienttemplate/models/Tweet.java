@@ -11,20 +11,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 @Parcel
-public class Tweet {
+public class Tweet implements Serializable {
 
     public String body;
     public String createdAt;
     public User user;
     public String media;
-
-    public Tweet() {}
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();

@@ -41,12 +41,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     //inflate a layout for each row
 
-    ImageView ivProfileImage;
-    ImageView ivMediaImage;
-    TextView tvScreenName;
-    TextView tvBody;
-    TextView tvRelativeTime;
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -104,6 +98,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        ImageView ivProfileImage;
+        ImageView ivMediaImage;
+        TextView tvScreenName;
+        TextView tvBody;
+        TextView tvRelativeTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,7 +129,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivMediaImage.setVisibility(View.VISIBLE);
             }
             else {
-                ivMediaImage.setVisibility(View.INVISIBLE);
+                ivMediaImage.setVisibility(View.GONE);
             }
         }
     }
